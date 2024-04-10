@@ -1,0 +1,29 @@
+<div id="wrapper">
+    <div id="left-side">
+        <h4 *ngIf="isRegister">Регистрация</h4>
+        <h4 *ngIf="!isRegister">Авторизация</h4>
+        <form [formGroup]="userForm">
+            <div class="input-div">
+                <h5>Логин</h5>
+                <input type="text" formControlName="login" name="login" >
+            </div>
+            <div class="input-div" >
+                <h5>Пароль</h5>
+                <input type="password" formControlName="password"  name="password">
+            </div>
+        </form>
+        <div class="actions">
+            <button *ngIf="isRegister" (click)="handleProcceedAuth()" id="main_action">Зарегистироваться</button>
+            <button *ngIf="isRegister" (click)="handleChangeAction()" id="change_action">Уже есть аккаунт? Войти</button>
+            <button *ngIf="!isRegister" (click)="handleProcceedAuth()" id="main_action">Войти</button>
+            <button *ngIf="!isRegister" (click)="handleChangeAction()" id="change_action">Нет аккаунта? Зарегистироваться</button>
+
+            <button *ngIf="!isCleaner" (click)="onChange()" id="change_person">Я клинер</button>
+            <button *ngIf="isCleaner" (click)="onChange()" id="change_person">Я клиент</button>
+        </div>
+    </div>
+
+    <div id="right-side">
+        <p>Клининг - это комплекс действий, необходимый для обеспечения чистоты в промышленных, коммерческих и бытовых помещениях. Помимо технического обслуживания и аспектов гигиены, она также включает в себя контроль безопасности и порядка, а также улучшения с эстетической точки зрения.</p>
+    </div>
+</div>

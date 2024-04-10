@@ -35,9 +35,8 @@ public class Order {
     private Cleaner cleaner;
 
     
-    @OneToOne(mappedBy = "post", 
-        cascade = CascadeType.ALL,
-        fetch = FetchType.LAZY, optional = false)
+    @OneToOne(cascade = CascadeType.ALL) 
+    @JoinColumn(name = "fk_review_id")
     private Review review;
 
 }

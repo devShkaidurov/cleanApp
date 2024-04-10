@@ -1,0 +1,116 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#wrapper {
+    width: 50%;
+    height: 350px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px black;
+}
+
+#left-side {
+    width: 50%;
+    border-radius: 5px 0px 0px 5px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#left-side h4 {
+    font-size: 16pt;
+}
+
+#left-side .input-div {
+    margin: 5px;
+}
+
+#left-side .input-div input {
+    font-size: 14pt;
+}
+
+#left-side .input-div h5 {
+    font-size: 12pt;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0px !important;
+    margin: 0px 0px 3px 0px !important;
+}
+
+#left-side .actions {
+    display: flex;
+    flex-flow: column;
+    padding-top: 25px;
+}
+
+#main_action {
+    margin: 5px 0px 15px 0px;
+    padding: 7px;
+    border: none;
+    background: blue;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+#main_action:hover {
+    transition: 0.25s;
+    box-shadow: 0px 0px 5px black;
+}
+
+#change_action {
+    padding: 5px;
+    border: none;
+    background: none;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#change_action:hover {
+    transition: 0.25s;
+    text-shadow: 0px 0px 1px rgb(58, 58, 58);
+}
+
+#change_person {
+    padding: 5px;
+    border: none;
+    background: none;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#change_person:hover {
+    transition: 0.25s;
+    text-shadow: 0px 0px 1px rgb(58, 58, 58);
+}
+
+#right-side {
+    width: 50%;
+    border: solid 1px blue;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    align-items: center;
+    background-color: blue;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14pt;
+    line-height: 19pt;
+    padding: 0px 15px 0px 15px;
+    border-radius: 0px 5px 5px 0px;
+}
