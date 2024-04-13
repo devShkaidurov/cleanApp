@@ -8,17 +8,17 @@
 
     <div id="avatar">
         <img src="../../../assets/images/user.svg" alt="Аватар">
-        <p>{{ customer?.name || "Шкайдуров Егор Александрович"}}</p>
+        <p>{{ customer?.name || "Неизвестное имя"}}</p>
     </div>
 
     <div id="container">
         <div class="field">
             <p>Имя</p>
-            <input type="text">
+            <input type="text" [(ngModel)]="customer.name">
         </div>
         <div class="field">
             <p>Логин</p>
-            <input type="text">
+            <input type="text" [(ngModel)]="customer.login">
         </div>
 
         <div class="field">
@@ -28,7 +28,7 @@
     </div>
 
     <div id="footer">
-        <button>Сохранить</button>
-        <button>Выйти из аккаунта</button>
+        <button (click)="handleSave()">Сохранить</button>
+        <button (click)="handleSignOff()">Выйти из аккаунта</button>
     </div>
 </div>

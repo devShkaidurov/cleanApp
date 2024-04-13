@@ -10,6 +10,7 @@ import { CustomerService } from 'src/app/services/CustomerService';
 })
 export class UserPanelComponent implements OnInit {
   customer: Customer | undefined;
+  id: number | undefined;
 
   constructor (
     private router: Router,
@@ -17,14 +18,14 @@ export class UserPanelComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = Number(localStorage.getItem("id"));
-    if (!id) {
+    this.id = Number(localStorage.getItem("id"));
+    if (!this.id) {
       console.dir("Не авторизован");
       // this.router.navigate(['auth']);
       // return;
     }
 
-    this.customerService.get(id).subscribe({
+    this.customerService.get(this.id).subscribe({
       next: (customer) => {
         this.customer = customer;
       },
@@ -38,5 +39,23 @@ export class UserPanelComponent implements OnInit {
     this.router.navigate(['customer', 'main']);
   }
 
+  handleSignOff(): void {
+    localStorage.removeItem("id");
+    this.router.navigate(['auth']);
+    return;
+  }
+  
+  handleSave(): void {
+    // id = in url
+    // customer = in body
+    this.customerService.update(this.id, this.customer).subscribe({
+      next: (customer) => {
+        console.dir("Пользователь успешно сохранен");
+      },
+      error: () => {
+        console.dir("Ошибка при редактировании данных пользователя");
+      }
+    })
+  }
 
 }

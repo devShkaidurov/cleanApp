@@ -32,6 +32,12 @@
     border: none;
     cursor: pointer;
     width: 50px;
+    transition: 0.15s;
+}
+
+#header button:hover {
+    scale: 1.1;
+    transition: 0.15s;
 }
 
 #header p {

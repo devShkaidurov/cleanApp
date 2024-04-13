@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.study.cleanApp.dto.CustomerDTO;
+import com.study.cleanApp.dto.CustomerUpdateDTO;
 import com.study.cleanApp.dto.RegisterUser;
 import com.study.cleanApp.services.CustomerService;
 
@@ -38,4 +40,16 @@ public class CustomerController {
         CustomerDTO customer = customerService.register(user);
         return new ResponseEntity<>(customer, customer == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
     }
+
+    @GetMapping("/{id}")
+    private ResponseEntity<?> getCustomer (@PathVariable long id) {
+        CustomerDTO customer = customerService.get(id);
+        return new ResponseEntity<>(customer, customer == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    private ResponseEntity<?> updateCustomer (@PathVariable long id, @RequestBody CustomerUpdateDTO dto) throws NoSuchAlgorithmException {
+        CustomerDTO customer = customerService.update(id, dto);
+        return new ResponseEntity<>(customer, customer == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+    } 
 }

@@ -20,6 +20,10 @@ export class CustomerService {
     }
 
     get (id: number): Observable<Customer> {
-        return this.http.get<Customer>(`${environment.url}/customer?id=${id}`);
+        return this.http.get<Customer>(`${environment.url}/customer/${id}`);
+    }
+
+    update (id: number, customer: Customer) {
+        return this.http.put(`${environment.url}/customer/${id}`, customer);
     }
 }
