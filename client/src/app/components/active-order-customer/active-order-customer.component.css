@@ -1,0 +1,56 @@
+:host {
+    height: 200px;
+    width: 300px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: #A8B6FA;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #A8B6FA;
+}
+
+.order-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-header p {
+    color: white;
+}
+
+.order-id {
+    font-size: 16pt;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 15px;
+}
+
+.order-status {
+    background-color: #7d8feb;
+    border-radius: 15px;
+    padding: 5px;
+    margin-right: 15px !important;
+    margin-top: 3px !important;
+}
+
+.other-info {
+    padding: 15px 0px 0px 15px;
+    height: calc(100% - 65px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.other-info p {
+    padding: 0px 0px 5px 0px;
+    font-size: 12pt;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(231, 231, 231);
+}
+
+hr {
+    width: 90%;
+}

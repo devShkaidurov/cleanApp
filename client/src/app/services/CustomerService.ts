@@ -18,4 +18,8 @@ export class CustomerService {
     auth(user: UserRegister): Observable<Customer> {
         return this.http.get<Customer>(`${environment.url}/customer/auth?login=${user.login}&password=${user.password}`);
     }
+
+    get (id: number): Observable<Customer> {
+        return this.http.get<Customer>(`${environment.url}/customer?id=${id}`);
+    }
 }

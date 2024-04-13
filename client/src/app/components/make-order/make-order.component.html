@@ -1,1 +1,51 @@
-<p>make-order works!</p>
+<div class="header">
+    <p>Хотите сделать новый заказ?</p>
+</div>
+
+<div class="body">
+    <div class="order-field">
+        <p>Выберите тип заказа</p>
+        <select name="order_type" id="order-type">
+            <option value="house">Дом</option>
+            <option value="house_garden">Дом с участком</option>
+            <option value="flat">Квартира</option>
+            <option value="garage">Гараж</option>
+        </select>
+    </div>
+    <div class="order-field">
+        <p>Выберите тип уборки</p>
+        <select name="clean_type" id="clean_type">
+            <option value="standart">Стандартная (влажная)</option>
+            <option value="standart_window">Стандартная и окна</option>
+            <option value="general">Генеральная</option>
+            <option value="after_repairing">После ремонта</option>
+            <option value="dry">Сухая</option>
+        </select>
+    </div>
+    <div class="order-field">
+        <p>Введите площадь уборки</p>
+        <input type="text">
+    </div>
+    <div class="order-field">
+        <p>Введите адрес уборки</p>
+        <input type="text">
+    </div>
+    <div class="order-field">
+        <p>Выберите дату и время</p>
+        <input type="datetime-local" name="order_date" id="order_date">
+    </div>
+    <div class="order-field">
+        <p>Выберите клинера</p>
+        <select name="cleaner" id="cleaner">
+            <option value="1">Шкайдуров Егор Александрович</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+</div>
+
+<div class="header">
+    <button>Оформить заказ</button>
+</div>

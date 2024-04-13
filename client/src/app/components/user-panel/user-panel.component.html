@@ -1,0 +1,34 @@
+<div id="wrapper">
+    <div id="header">
+        <button id="back_buttom">
+            <img src="../../../assets/images/back.svg" alt="Назад" (click)="handleGoBack()">
+        </button>
+        <p>Профиль</p>
+    </div>
+
+    <div id="avatar">
+        <img src="../../../assets/images/user.svg" alt="Аватар">
+        <p>{{ customer?.name || "Шкайдуров Егор Александрович"}}</p>
+    </div>
+
+    <div id="container">
+        <div class="field">
+            <p>Имя</p>
+            <input type="text">
+        </div>
+        <div class="field">
+            <p>Логин</p>
+            <input type="text">
+        </div>
+
+        <div class="field">
+            <p>Новый пароль</p>
+            <input type="password">
+        </div>
+    </div>
+
+    <div id="footer">
+        <button>Сохранить</button>
+        <button>Выйти из аккаунта</button>
+    </div>
+</div>

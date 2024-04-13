@@ -7,16 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { MainCustomerComponent } from './components/main-customer/main-customer.component';
-import { HistoryOrderComponent } from './components/history-order/history-order.component';
-import { MakeOrderComponent } from './components/make-order/make-order.component';
-import { ActiveOrderCustomerComponent } from './components/active-order-customer/active-order-customer.component';
+import { UserPanelComponent } from './components/user-panel/user-panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     NotFoundComponent,
+    UserPanelComponent,
   ],
   imports: [
     BrowserModule,
