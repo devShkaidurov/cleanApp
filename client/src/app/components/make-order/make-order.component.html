@@ -2,50 +2,42 @@
     <p>Хотите сделать новый заказ?</p>
 </div>
 
-<div class="body">
+<form class="body" [formGroup]="orderForm">
     <div class="order-field">
-        <p>Выберите тип заказа</p>
-        <select name="order_type" id="order-type">
-            <option value="house">Дом</option>
-            <option value="house_garden">Дом с участком</option>
-            <option value="flat">Квартира</option>
-            <option value="garage">Гараж</option>
+        <p>Выберите тип объекта</p>
+        <select name="order_type" id="order-type" formControlName="order_type">
+            <option>--- Тип объекта ---</option>
+            <option *ngFor="let object of objectType" value={{object.key}}>{{ object.value }}</option>
         </select>
     </div>
     <div class="order-field">
         <p>Выберите тип уборки</p>
-        <select name="clean_type" id="clean_type">
-            <option value="standart">Стандартная (влажная)</option>
-            <option value="standart_window">Стандартная и окна</option>
-            <option value="general">Генеральная</option>
-            <option value="after_repairing">После ремонта</option>
-            <option value="dry">Сухая</option>
+        <select name="clean_type" id="clean_type" formControlName="clean_type">
+            <option>--- Тип уборки ---</option>
+            <option *ngFor="let object of cleanType" value={{object.key}}>{{ object.value }}</option>
         </select>
     </div>
     <div class="order-field">
         <p>Введите площадь уборки</p>
-        <input type="text">
+        <input type="text" formControlName="square">
     </div>
-    <div class="order-field">
+    <div class="order-field" >
         <p>Введите адрес уборки</p>
-        <input type="text">
+        <input type="text" formControlName="order_address">
     </div>
-    <div class="order-field">
+    <div class="order-field" >
         <p>Выберите дату и время</p>
-        <input type="datetime-local" name="order_date" id="order_date">
+        <input type="datetime-local" formControlName="date" name="order_date" id="order_date">
     </div>
-    <div class="order-field">
+    <div class="order-field" >
         <p>Выберите клинера</p>
-        <select name="cleaner" id="cleaner">
-            <option value="1">Шкайдуров Егор Александрович</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+        <select name="cleaner" id="cleaner" formControlName="order_cleaner_id">
+            <option>--- Клинер ---</option>
+            <option *ngFor="let cleaner of cleaners" value={{cleaner.id}}>{{ cleaner.fio }}</option>
         </select>
     </div>
-</div>
+</form>
 
 <div class="header">
-    <button>Оформить заказ</button>
+    <button (click)="handleMakeOrder()">Оформить заказ</button>
 </div>

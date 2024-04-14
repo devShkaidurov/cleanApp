@@ -1,0 +1,26 @@
+#wrapper {
+    height: 200px;
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #A8B6FA;
+}
+
+#wrapper::-webkit-scrollbar {
+    height: 10px;
+    border-radius: 3px;
+    background-color: #A8B6FA;
+}
+
+#wrapper::-webkit-scrollbar-thumb {
+    background-color: #5571FA;
+    border-radius: 3px;
+}
+
+li {
+    width: 300px; 
+    height: 90%;
+    list-style-type: none;
+    padding-right: 15px !important;
+}

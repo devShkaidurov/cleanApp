@@ -6,10 +6,10 @@
 </div>
 <div id="main-container">
     <div id="left-side">
-        <app-active-order-customer></app-active-order-customer>
-        <app-make-order></app-make-order>
+        <app-active-order-list [orders]="activeOrders"></app-active-order-list>
+        <app-make-order [customerId]="customerId"></app-make-order>
     </div>
     <div id="right-side">
-        <app-history-order></app-history-order>
+        <app-history-order [orders]="doneOrders"></app-history-order>
     </div>
 </div>

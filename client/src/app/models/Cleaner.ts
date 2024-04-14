@@ -1,7 +1,6 @@
 export interface Cleaner {
     id: number,
     login: string,
-    name: string,
-    surname: string,
+    fio: string,
     birthday: Date
 }

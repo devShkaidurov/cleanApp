@@ -18,4 +18,8 @@ export class CleanerService {
     auth(user: UserRegister): Observable<Cleaner> {
         return this.http.get<Cleaner>(`${environment.url}/cleaner/auth?login=${user.login}&password=${user.password}`);
     }
+
+    getAll (): Observable<Cleaner[]> {
+        return this.http.get<Cleaner[]>(`${environment.url}/cleaner`);
+    }
 }

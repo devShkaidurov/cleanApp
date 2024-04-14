@@ -45,7 +45,8 @@ public class CustomerService {
             return null;
         customer.get().setName(dto.getName());
         customer.get().setLogin(dto.getLogin());
-        customer.get().setPassword(RegisterUser.toHexString(RegisterUser.getSHA(dto.getPassword())));
+        if (dto.getPassword() != null)
+            customer.get().setPassword(RegisterUser.toHexString(RegisterUser.getSHA(dto.getPassword())));
         customerRepository.save(customer.get());
         return CustomerDTO.fromEntity(customer.get());
     }

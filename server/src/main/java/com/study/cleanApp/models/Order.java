@@ -21,6 +21,7 @@ public class Order {
     private boolean isDone;
     private int cleanType;
     private int orderType;
+    private int square;
 
     @ManyToOne(fetch = FetchType.EAGER,
         cascade = CascadeType.MERGE)

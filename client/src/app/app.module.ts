@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { UserPanelComponent } from './components/user-panel/user-panel.component';
+import { ActiveOrderListComponent } from './components/active-order-list/active-order-list.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,8 @@ import { UserPanelComponent } from './components/user-panel/user-panel.component
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

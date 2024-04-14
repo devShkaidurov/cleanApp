@@ -10,5 +10,5 @@ import { Order } from 'src/app/models/Order';
   imports: [CommonModule]
 })
 export class HistoryOrderComponent {
-  @Input() orderList: Order[];
+  @Input() orders: Order[];
 }

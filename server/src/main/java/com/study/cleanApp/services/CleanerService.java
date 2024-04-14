@@ -31,4 +31,12 @@ public class CleanerService {
         Cleaner saved = cleanerRepository.save(cleaner);
         return saved == null ? null : CleanerDTO.fromEntity(saved);
     }
+    
+    public List<CleanerDTO> getAll () {
+        List<Cleaner> cleaners = cleanerRepository.findAll();
+        return cleaners.stream()
+            .map(CleanerDTO::fromEntity)
+            .toList();
+    } 
+
 }
