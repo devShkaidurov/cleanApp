@@ -6,11 +6,11 @@
 </div>
 <div id="main-container">
     <div id="left-side">
-        <app-active-order-list [orders]="activeOrders" [modalService]="modalService"></app-active-order-list>
-        <app-make-order [customerId]="customerId"></app-make-order>
+        <app-active-order-list [orders]="activeOrders" [modalService]="modalService" [orderManager]="orderManager"></app-active-order-list>
+        <app-make-order [customerId]="customerId" [orderManager]="orderManager"></app-make-order>
     </div>
     <div id="right-side">
-        <app-history-order [orders]="doneOrders"></app-history-order>
+        <app-history-order [orders]="doneOrders" [orderManager]="orderManager"></app-history-order>
     </div>
 </div>
 <app-modal *ngIf="modalService.isModalOpen" [order]="modalService.currentOrder" (cancelOrder)="modalService.cancelOrder($event)" (closeEvent)="modalService.closeModal()"></app-modal>

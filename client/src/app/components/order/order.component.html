@@ -1,0 +1,29 @@
+<div id="wrapper">
+    <div class="order-header">
+        <button>
+            <img src="../../../assets/images/back.svg" alt="Назад">
+        </button>
+        <p class="order-id">Заказ #{{order?.id}}</p>
+        <p class="order-status">{{ getStatus(order?.status) }}</p>
+    </div>
+    <hr>
+    <div class="other-info">
+        <p class="order-address">Адрес: {{ order?.order_address}}</p>
+        <p class="order-type">Тип уборки: {{ getCleanType(order?.clean_type)}}</p>
+        <p class="order-type">Тип объекта: {{ getObjectType(order?.order_type)}}</p>
+    </div>
+    <div class="review">
+        <p>Оставьте отзыв!</p>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <div id="containerLoader">
+            <label for="imageLoader" id="imageLoaderLabel">Прикрепить фотографии к отзыву</label>
+            <input
+                type="file"
+                id="imageLoader"
+                name="imageLoader"
+                accept=".jpg, .jpeg, .png"
+                multiple />
+        </div>
+        <button>Отправить отзыв</button>
+    </div>
+</div>

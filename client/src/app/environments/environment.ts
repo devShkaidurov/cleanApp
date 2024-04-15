@@ -7,6 +7,7 @@ export const environment = {
         {key: 4, value: "Гараж"},
     ],
     orderStatus: [
+        {key: -2, value: "Отменён"},
         {key: -1, value: "Выполнен"},
         {key: 0, value: "Оформлен, ждет очереди"},
         {key: 1, value: "Клинер в пути"},

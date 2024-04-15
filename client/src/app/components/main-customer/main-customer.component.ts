@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { Order } from 'src/app/models/Order';
 import { ModalService } from 'src/app/services/ModalService';
+import { OrderManager } from 'src/app/services/OrderManager';
 import { OrderService } from 'src/app/services/OrderService';
 import { ActiveOrderListComponent } from '../active-order-list/active-order-list.component';
 import { HistoryOrderComponent } from '../history-order/history-order.component';
@@ -28,7 +29,8 @@ export class MainCustomerComponent implements OnInit {
   constructor (
     private router: Router,
     private orderService: OrderService,
-    public modalService: ModalService
+    public modalService: ModalService,
+    public orderManager: OrderManager
   ) {}
 
   ngOnInit(): void {

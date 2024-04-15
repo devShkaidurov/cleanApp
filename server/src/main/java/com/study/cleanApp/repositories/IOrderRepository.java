@@ -12,8 +12,8 @@ import com.study.cleanApp.models.Order;
 @Repository
 public interface IOrderRepository extends JpaRepository<Order, Long> {
 
-    @Query("SELECT o FROM Order o WHERE o.customer = :customer AND o.status != 1")
+    @Query("SELECT o FROM Order o WHERE o.customer = :customer AND o.status != -1 AND o.status != -2")
     List<Order> findAllByCustomerAndNotStatus(Customer customer);
-    List<Order> findAllByCustomerAndStatus(Customer customer, int i);
-    
+    @Query("SELECT o FROM Order o WHERE o.customer = :customer AND (o.status = -1 OR o.status = -2)")
+    List<Order> findAllByCustomerAndStatus(Customer customer);
 }

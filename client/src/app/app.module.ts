@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { UserPanelComponent } from './components/user-panel/user-panel.component';
+import { OrderComponent } from './components/order/order.component';
 
 registerLocaleData(localeRu);
 
@@ -18,6 +19,7 @@ registerLocaleData(localeRu);
     AuthComponent,
     NotFoundComponent,
     UserPanelComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,

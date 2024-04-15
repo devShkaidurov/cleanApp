@@ -1,12 +1,14 @@
 import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 import { Order } from "../models/Order";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ModalService {
-    public isModalOpen = true;
+    public isModalOpen = false;
     public currentOrder: Order;
+    public order$ = new Subject<Order>();
     
     openModal (order: Order): void {
         this.currentOrder = order;
@@ -18,7 +20,6 @@ export class ModalService {
     }
 
     cancelOrder (order: Order): void {
-        console.dir("Заказ отменен");
-        console.dir(order);
+        this.order$.next(order);
     }
 }

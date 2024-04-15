@@ -14,14 +14,14 @@ export class ActiveOrderCustomerComponent {
   cleanType = environment.cleanType;
 
   getStatus(status: number): string {
-    return this.orderStatus.find(item => item.key === status).value;
+    return this.orderStatus.find(item => item.key === status)?.value;
   }
 
   getCleanType(type: number): string {
-    return this.cleanType.find(item => item.key === type).value;
+    return this.cleanType.find(item => item.key === type)?.value;
   }
 
   getObjectType(type: number): string {
-    return this.objectType.find(item => item.key === type).value;
+    return this.objectType.find(item => item.key === type)?.value;
   }
 }

@@ -23,4 +23,5 @@ li {
     height: 90%;
     list-style-type: none;
     padding-right: 35px !important;
+    cursor: pointer;
 }

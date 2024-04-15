@@ -35,11 +35,11 @@ public class OrderService {
             .toList();
     }
 
-    public List<OrderDTO> getDoneOrders (long userId) {
+    public List<OrderDTO> getDoneOrdersOrCanceled (long userId) {
         Optional<Customer> customer = customerRepository.findById(userId);
         if (customer.isEmpty())
             return null;
-        List<Order> orders = orderRepository.findAllByCustomerAndStatus(customer.get(), -1);
+        List<Order> orders = orderRepository.findAllByCustomerAndStatus(customer.get());
         if (orders.isEmpty())
             return null;
         return orders.stream()
@@ -57,5 +57,19 @@ public class OrderService {
         order.setCustomer(customer.get());
         Order savedOrder = orderRepository.save(order);
         return savedOrder == null ? null : OrderDTO.fromEntity(savedOrder);
+    }
+    
+    public OrderDTO cancelOrder (long id) {
+        Optional<Order> order = orderRepository.findById(id);
+        if (order.isEmpty())
+            return null;
+        order.get().setStatus(-2);
+        Order saved = orderRepository.save(order.get());
+        return saved == null ? null : OrderDTO.fromEntity(saved);     
+    }
+
+    public OrderDTO getOrderById (long id) {
+        Optional<Order> order = orderRepository.findById(id);
+        return order.isEmpty() ? null : OrderDTO.fromEntity(order.get());
     }
 }

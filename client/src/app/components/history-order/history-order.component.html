@@ -2,4 +2,8 @@
 <hr>
 <div id="history-list">
     <div *ngIf="!orders || orders.length == 0"><p>История заказов пока пуста!</p></div>
+    <li *ngFor="let order of orders" (click)="handleGoToOrder(order.id)">
+        <div>Заказ #{{order.id}}</div>
+        <div>{{getStatus(order.status)}}</div>
+    </li>
 </div>

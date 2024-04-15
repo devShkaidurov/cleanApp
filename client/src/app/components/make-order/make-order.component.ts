@@ -2,11 +2,13 @@ import { CommonModule, formatNumber } from '@angular/common';
 import { isNgTemplate } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Subject } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
 import { Cleaner } from 'src/app/models/Cleaner';
 import { MakeOrder } from 'src/app/models/MakeOrder';
 import { Order } from 'src/app/models/Order';
 import { CleanerService } from 'src/app/services/CleanerService';
+import { OrderManager } from 'src/app/services/OrderManager';
 import { OrderService } from 'src/app/services/OrderService';
 
 @Component({
@@ -17,6 +19,7 @@ import { OrderService } from 'src/app/services/OrderService';
   imports: [CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class MakeOrderComponent implements OnInit {
+  @Input() orderManager: OrderManager;
 
   orderForm = new FormGroup({
     order_type: new FormControl(""),
@@ -35,7 +38,7 @@ export class MakeOrderComponent implements OnInit {
 
   constructor (
     private orderService: OrderService,
-    private cleanerService: CleanerService
+    private cleanerService: CleanerService,
   ) {}
 
   ngOnInit(): void {
@@ -64,6 +67,7 @@ export class MakeOrderComponent implements OnInit {
       next: (order) => {
         console.dir("New order has ordered");
         console.dir(order);
+        this.orderManager.order$.next(order);
       },
       error: () => {
         console.dir("Ошибка при создании заказа!");

@@ -17,14 +17,37 @@ hr {
 }
 
 #history-list {
+    padding-top: 15px;
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    flex-direction: column;
 }
 
 #history-list p {
     color: white;
     font-size: 14pt;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+li {
+    list-style-type: none;
+    cursor: pointer;
+    width: 80%;
+    height: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #5571fa;
+    margin: 0px 0px 25px 0px;
+    align-items: center;
+    border-radius: 15px;
+    color: white;
+    font-size: 1rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer; 
+}
+
+li:hover {
+    box-shadow: 0px 0px 3px black;
 }
