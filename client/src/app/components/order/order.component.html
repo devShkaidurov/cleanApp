@@ -15,15 +15,21 @@
     <div class="review">
         <p>Оставьте отзыв!</p>
         <textarea name="" id="" cols="30" rows="10"></textarea>
-        <div id="containerLoader">
-            <label for="imageLoader" id="imageLoaderLabel">Прикрепить фотографии к отзыву</label>
-            <input
-                type="file"
-                id="imageLoader"
-                name="imageLoader"
-                accept=".jpg, .jpeg, .png"
-                multiple />
+        <div id="other-review">
+            <div id="containerLoader">
+                <label for="imageLoader" id="imageLoaderLabel">Прикрепить фотографии к отзыву <br>(не более трех штук)</label>
+                <input
+                    type="file"
+                    id="imageLoader"
+                    name="imageLoader"
+                    accept=".jpg, .jpeg, .png"
+                    multiple 
+                    (change)="uploadPhotos()"/>
+            </div>
+            <div class="preview">
+                <p>Нет выбранных фото</p>
+            </div>
+            <button>Отправить отзыв</button>
         </div>
-        <button>Отправить отзыв</button>
     </div>
 </div>
