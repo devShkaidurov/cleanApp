@@ -1,6 +1,6 @@
 
 <div id="wrapper">
     <li *ngFor="let order of orders">
-        <app-active-order-customer [order]="order"></app-active-order-customer>
+        <app-active-order-customer [order]="order" (click)="openModal(order)"></app-active-order-customer>
     </li>
 </div>

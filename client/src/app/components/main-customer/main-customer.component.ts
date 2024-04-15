@@ -1,27 +1,34 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { Order } from 'src/app/models/Order';
+import { ModalService } from 'src/app/services/ModalService';
 import { OrderService } from 'src/app/services/OrderService';
 import { ActiveOrderListComponent } from '../active-order-list/active-order-list.component';
 import { HistoryOrderComponent } from '../history-order/history-order.component';
 import { MakeOrderComponent } from '../make-order/make-order.component';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-main-customer',
   standalone: true,
   templateUrl: './main-customer.component.html',
   styleUrls: ['./main-customer.component.css'],
-  imports: [ActiveOrderListComponent, MakeOrderComponent, HistoryOrderComponent]
+  imports: [ModalComponent, ActiveOrderListComponent, MakeOrderComponent, HistoryOrderComponent, CommonModule]
 })
 export class MainCustomerComponent implements OnInit {
   customerId: number = -1;
   activeOrders: Order[] | undefined;
   doneOrders: Order[] | undefined;
 
+  // isModalOpen = false;
+  // currentOrder: Order;
+
   constructor (
     private router: Router,
-    private orderService: OrderService
+    private orderService: OrderService,
+    public modalService: ModalService
   ) {}
 
   ngOnInit(): void {
@@ -45,19 +52,23 @@ export class MainCustomerComponent implements OnInit {
           console.dir("Ошибка при получении выполненных заказов!");
         }
       })
-
-
-      // forkJoin([
-      //   this.orderService.getActiveOrders(this.customerId),
-      //   this.orderService.getDoneOrders(this.customerId)
-      // ]).subscribe(([active, done]) => {
-      //   this.activeOrders = active;
-      //   console.dir(this.activeOrders);
-      //   this.doneOrders = done;
-      // });
   }
 
   handleGoToUserPanel(): void {
     this.router.navigate(['customer', 'profile']);
   }
+
+  // openModal (order: Order): void {
+  //   this.currentOrder = order;
+  //   this.isModalOpen = true;
+  // }
+
+  // closeModal (): void {
+  //   this.isModalOpen = false;
+  // }
+
+  // cancelOrder (order: Order): void {
+  //   console.dir("Заказ отменен");
+  //   console.dir(order);
+  // }
 }

@@ -1,14 +1,16 @@
+import { DatePipe, registerLocaleData } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
+import localeRu from '@angular/common/locales/ru';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { UserPanelComponent } from './components/user-panel/user-panel.component';
-import { ActiveOrderListComponent } from './components/active-order-list/active-order-list.component';
+
+registerLocaleData(localeRu);
 
 @NgModule({
   declarations: [
@@ -24,9 +26,12 @@ import { ActiveOrderListComponent } from './components/active-order-list/active-
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: LOCALE_ID, useValue: 'ru' },
+    DatePipe
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

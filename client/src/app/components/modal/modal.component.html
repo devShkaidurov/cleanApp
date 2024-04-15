@@ -1,0 +1,18 @@
+<div id="wrapper">
+    <div class="order-header">
+        <p class="order-id">Заказ #{{order?.id}}</p>
+        <p class="order-status">{{ getStatus(order?.status) }}</p>
+    </div>
+    <hr>
+    <div class="other-info">
+        <p class="order-address">Адрес: {{ order?.order_address}}</p>
+        <p class="order-type">Тип уборки: {{ getCleanType(order?.clean_type)}}</p>
+        <p class="order-type">Тип объекта: {{ getObjectType(order?.order_type)}}</p>
+        <p class="order-type">Клинер приедет {{ order.date | date: 'd MMMM, y, в H:mm'}}</p>
+    </div>
+
+    <div class="actions">
+        <button (click)="cancel()">Отменить заказ</button>
+        <button (click)="close()">Назад</button>
+    </div>
+</div>

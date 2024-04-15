@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Order } from 'src/app/models/Order';
-
+import { environment } from 'src/app/environments/environment';
 @Component({
   selector: 'app-active-order-customer',
   standalone: true,
@@ -9,49 +9,19 @@ import { Order } from 'src/app/models/Order';
 })
 export class ActiveOrderCustomerComponent {
   @Input() order: Order;
+  objectType = environment.objectType;
+  orderStatus = environment.orderStatus;
+  cleanType = environment.cleanType;
 
   getStatus(status: number): string {
-    switch(status) {
-      case 1:
-        return "Принят, ждет очереди";
-      case 2:
-        return "Клинер к Вам выехал";
-      case 3:
-        return "Проходит уборка";
-      default:
-        return "Неизвестно";
-    }
+    return this.orderStatus.find(item => item.key === status).value;
   }
 
   getCleanType(type: number): string {
-    switch(type) {
-      case 1:
-        return "Стандартная";
-      case 2:
-        return "Сухая";
-      case 3:
-        return "После ремонта";
-      case 4:
-        return "Стандартная и окна";
-      case 5:
-        return "Генеральная";
-      default:
-        return "Неизвестно"
-    }
+    return this.cleanType.find(item => item.key === type).value;
   }
 
   getObjectType(type: number): string {
-    switch(type) {
-      case 1:
-        return "Квартира";
-      case 2:
-        return "Частный дом";
-      case 3:
-        return "Частный дом и участок";
-      case 4:
-        return "Гараж";
-      default:
-        return "Неизвестно"
-    }
+    return this.objectType.find(item => item.key === type).value;
   }
 }
