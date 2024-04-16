@@ -12,7 +12,7 @@ export class PhotoService {
         private http: HttpClient
     ) {}
 
-    public getPhotoById (reviewId: number): Observable<Photo[]> {
-        return this.http.get<Photo[]>(`${environment.url}/${reviewId}/photo`);
+    public getPhotoById (reviewId: number): Observable<Object> {
+        return this.http.get<Object>(`${environment.url}/${reviewId}/photo`);
     }
 }

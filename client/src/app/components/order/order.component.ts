@@ -17,7 +17,7 @@ import { ReviewService } from 'src/app/services/ReviewService';
 })
 export class OrderComponent implements OnInit {
   order: Order;
-  review: Review;
+  review: Review | undefined;
   photos: Photo[];
   objectType = environment.objectType;
   orderStatus = environment.orderStatus;
@@ -56,11 +56,14 @@ export class OrderComponent implements OnInit {
       })
 
       this.reviewService.getReviewById(orderId).subscribe({
-        next: (review) =>{
+        next: (review) => {
           this.review = review;
+          setTimeout(() => {
+            this.fillStar(this.review.value);
+          })
           this.photoService.getPhotoById(this.review.id).subscribe({
-            next: (photos) => {
-              this.photos = photos;
+            next: (object) => {
+              this.loadPhotoFromDB(object);
             },
             error: () => {
               console.dir("Ошибка получения фотографий отзыва!");
@@ -68,14 +71,14 @@ export class OrderComponent implements OnInit {
           })
         },
         error: () => {
+          this.starsAnimation();
           console.dir("Ошибка получения отзыва!");
         }
       })
+  }
 
-      
-
-      // bind start hover and click 
-      const stars = document.getElementById("review-values").childNodes;
+  starsAnimation () {
+    const stars = document.getElementById("review-values").childNodes;
       for (let i = 0; i < stars.length; i++) {
         const star = stars[i];
         star.addEventListener('mouseover', (e) => {
@@ -87,9 +90,19 @@ export class OrderComponent implements OnInit {
         star.addEventListener('click', (e) => {
           this.setFilled(i, stars, true);
         }); 
-      }
-      console.dir(stars);
+    }
+  }
 
+  fillStar (value: number) {
+    const stars = document.getElementById("review-values").childNodes;
+    console.dir(stars);
+    const index = value * (stars.length - 1) / 5;
+    console.dir(index);
+    for (let i = 0; i < index; i++) {
+      const currentImg = stars[i].firstChild as HTMLElement;
+      console.dir("Filled " + i);
+      currentImg.style.content = 'url("../../../assets/images/filledStar.svg")';
+    }
   }
 
   setFilled(index: number, stars: any, isClick: boolean) {
@@ -132,42 +145,76 @@ export class OrderComponent implements OnInit {
     return this.objectType.find(item => item.key === type)?.value;
   }
 
+  loadPhotoFromDB (payload: any) {
+    console.dir(payload);
+    const preview = document.querySelector(".preview");
+    while (preview.firstChild) {
+      preview.removeChild(preview.firstChild);
+    }
+    const list = document.createElement("ol");
+    list.style.display = "flex";
+    list.style.width = "100%";
+    list.style.alignItems = "center";
+    list.style.justifyContent = "space-evenly";
+    list.style.border = "solid 1px red;";
+    list.style.flexDirection = "row";
+    list.style.margin = "0px";
+    list.style.padding = "0px";
+    preview.appendChild(list);
+    for (let i = 0; i < payload.length; i++) {
+      const listItem = document.createElement("li");
+      listItem.style.listStyleType = "none";
+      listItem.style.marginRight = "5px";
+      
+      const image = document.createElement("img");
+      image.style.height = "64px";
+      image.src = 'data:image/jpeg;base64,' + payload[i];
+      image.alt = image.title = "Фотография №" + i;
+      listItem.appendChild(image);
+      list.appendChild(listItem);
+    }
+  }
+
+  mainUpload(curFiles: any, preview: any) {
+    const list = document.createElement("ol");
+    list.style.display = "flex";
+    list.style.width = "100%";
+    list.style.alignItems = "center";
+    list.style.justifyContent = "space-evenly";
+    list.style.border = "solid 1px red;";
+    list.style.flexDirection = "row";
+    list.style.margin = "0px";
+    list.style.padding = "0px";
+    preview.appendChild(list);
+
+    const count = curFiles.length > 3 ? 3 : curFiles.length;
+
+    for (let i = 0; i < count; i++) {
+      const file = curFiles[i];
+      const listItem = document.createElement("li");
+      listItem.style.listStyleType = "none";
+      listItem.style.marginRight = "5px";
+      
+      if (this.validFileType(file)) {
+        const image = document.createElement("img");
+        image.style.height = "64px";
+        image.src = URL.createObjectURL(file);
+        image.alt = image.title = file.name;
+        listItem.appendChild(image);
+      } 
+      list.appendChild(listItem);
+    }
+  }
+
   uploadPhotos(): void {
     const input = document.getElementById("imageLoader") as HTMLInputElement;
     const preview = document.querySelector(".preview");
-      while (preview.firstChild) {
-        preview.removeChild(preview.firstChild);
-      }
-      let curFiles = input.files;
-      const list = document.createElement("ol");
-      list.style.display = "flex";
-      list.style.width = "100%";
-      list.style.alignItems = "center";
-      list.style.justifyContent = "space-evenly";
-      list.style.border = "solid 1px red;";
-      list.style.flexDirection = "row";
-      list.style.margin = "0px";
-      list.style.padding = "0px";
-      preview.appendChild(list);
-  
-      const count = curFiles.length > 3 ? 3 : curFiles.length;
-
-      for (let i = 0; i < count; i++) {
-        const file = curFiles[i];
-        const listItem = document.createElement("li");
-        listItem.style.listStyleType = "none";
-        listItem.style.marginRight = "5px";
-        
-        if (this.validFileType(file)) {
-          const image = document.createElement("img");
-          image.style.height = "64px";
-          image.src = URL.createObjectURL(file);
-          image.alt = image.title = file.name;
-          listItem.appendChild(image);
-        } 
-        list.appendChild(listItem);
-      }
+    while (preview.firstChild) {
+      preview.removeChild(preview.firstChild);
     }
+    let curFiles = input.files;
+    this.mainUpload(curFiles, preview);
+  }
 
     fileTypes = [
       "image/apng",
