@@ -187,3 +187,17 @@ hr {
 li {
     list-style-type: none;
 }
+
+#review-values {
+    margin: 20px 0px 10px 0px;
+    display: flex;
+    flex-direction: row;
+}
+
+.stars img {
+    width: 35px;
+}
+
+img[src*="../../../assets/images/star.svg"]:hover {
+    content: url("../../../assets/images/filledStar.svg");
+}

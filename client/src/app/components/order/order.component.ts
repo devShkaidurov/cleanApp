@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { startWith } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
 import { Order } from 'src/app/models/Order';
+import { Photo } from 'src/app/models/Photo';
+import { Review } from 'src/app/models/Review';
 import { OrderService } from 'src/app/services/OrderService';
+import { PhotoService } from 'src/app/services/PhotoService';
+import { ReviewService } from 'src/app/services/ReviewService';
 
 @Component({
   selector: 'app-order',
@@ -10,15 +16,24 @@ import { OrderService } from 'src/app/services/OrderService';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
-  order: Order
+  order: Order;
+  review: Review;
+  photos: Photo[];
   objectType = environment.objectType;
   orderStatus = environment.orderStatus;
   cleanType = environment.cleanType;
+  reviewValue: number = 0;
+
+  formReview = new FormGroup({
+    
+  })
   
   constructor (
     private route: ActivatedRoute,
     private router: Router,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private reviewService: ReviewService,
+    private photoService: PhotoService
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +54,70 @@ export class OrderComponent implements OnInit {
           return;
         }
       })
+
+      this.reviewService.getReviewById(orderId).subscribe({
+        next: (review) =>{
+          this.review = review;
+          this.photoService.getPhotoById(this.review.id).subscribe({
+            next: (photos) => {
+              this.photos = photos;
+            },
+            error: () => {
+              console.dir("Ошибка получения фотографий отзыва!");
+            }
+          })
+        },
+        error: () => {
+          console.dir("Ошибка получения отзыва!");
+        }
+      })
+
+      
+
+      // bind start hover and click 
+      const stars = document.getElementById("review-values").childNodes;
+      for (let i = 0; i < stars.length; i++) {
+        const star = stars[i];
+        star.addEventListener('mouseover', (e) => {
+          this.setFilled(i, stars, false);
+        }); 
+        star.addEventListener('mouseout', (e) => {
+          this.unsetFilled(i, stars);
+        }); 
+        star.addEventListener('click', (e) => {
+          this.setFilled(i, stars, true);
+        }); 
+      }
+      console.dir(stars);
+
+  }
+
+  setFilled(index: number, stars: any, isClick: boolean) {
+    for (let i = 0; i < stars.length; i++) {
+      const star = stars[i];
+      if (i <= index) {
+        const currentImg = star.firstChild as HTMLElement;
+        currentImg.style.content = 'url("../../../assets/images/filledStar.svg")';
+      } else {
+        const currentImg = star.firstChild as HTMLElement;
+        currentImg.style.content = 'url("../../../assets/images/star.svg")';
+      }
+    }
+
+    if (isClick) {
+      this.reviewValue = index * 5 / (stars.length - 1);
+    }
+  }
+
+  unsetFilled (index: number, stars: any) {
+    if (index + 1 >= stars.length)
+      return;
+    const star = stars[index + 1].firstChild as HTMLElement;
+    star.style.content = 'url("../../../assets/images/star.svg")';
+  }
+
+  hoverFunction (e: any) {
+    console.dir(e);
   }
 
   getStatus(status: number): string {
@@ -118,4 +197,23 @@ export class OrderComponent implements OnInit {
       return ""
     }
   
+
+    handleReview(): void {
+      const input = document.getElementById("imageLoader") as HTMLInputElement;
+      const curFiles = input.files;
+      const text = (document.getElementById("reviewText") as HTMLInputElement).value;
+      this.reviewService.sendReview(this.order.id, curFiles, text, this.reviewValue).subscribe({
+        next: (order) => {
+          console.dir(order);
+        },
+        error: () => {
+          console.dir("Ошибка при отправке отзыва!")
+        }
+      })
+    }
+
+    handleGoMain(): void {
+      this.router.navigate(['customer', 'main']);
+    }
+
 }

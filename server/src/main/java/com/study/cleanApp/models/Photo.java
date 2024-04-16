@@ -1,5 +1,7 @@
 package com.study.cleanApp.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,5 +16,6 @@ public class Photo {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "review_id", foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT))
+    @JsonBackReference
     private Review review;
 }
