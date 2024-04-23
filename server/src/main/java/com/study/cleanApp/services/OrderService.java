@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.study.cleanApp.dto.MakeOrderDTO;
 import com.study.cleanApp.dto.OrderDTO;
+import com.study.cleanApp.dto.OrderUpdateDTO;
 import com.study.cleanApp.models.Cleaner;
 import com.study.cleanApp.models.Customer;
 import com.study.cleanApp.models.Order;
@@ -71,5 +72,14 @@ public class OrderService {
     public OrderDTO getOrderById (long id) {
         Optional<Order> order = orderRepository.findById(id);
         return order.isEmpty() ? null : OrderDTO.fromEntity(order.get());
+    }
+
+    public OrderDTO updateOrder(long id, OrderUpdateDTO dto) {
+        Optional<Order> order = orderRepository.findById(id);
+        if (order.isEmpty())
+            return null;
+        order.get().setStatus(dto.getStatus());
+        Order saved = orderRepository.save(order.get());
+        return saved == null ? null : OrderDTO.fromEntity(saved);
     }
 }

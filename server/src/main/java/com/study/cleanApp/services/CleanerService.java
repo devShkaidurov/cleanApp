@@ -1,6 +1,5 @@
 package com.study.cleanApp.services;
 
-import java.lang.StackWalker.Option;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
@@ -38,5 +37,10 @@ public class CleanerService {
             .map(CleanerDTO::fromEntity)
             .toList();
     } 
+
+    public CleanerDTO getById (long id) {
+        Optional<Cleaner> cleaner = cleanerRepository.findById(id);
+        return cleaner.isEmpty() ? null : CleanerDTO.fromEntity(cleaner.get());
+    }
 
 }

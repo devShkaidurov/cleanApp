@@ -16,7 +16,7 @@ import { OrderManager } from 'src/app/services/OrderManager';
   imports: [ModalComponent, ActiveOrderCustomerComponent, CommonModule, FormsModule]
 })
 export class ActiveOrderListComponent implements OnInit {
-  @Input() modalService: ModalService;
+  @Input() modalService: ModalService | undefined;
   @Input() orders: Order[] | undefined;
   @Input() orderManager: OrderManager;
 
@@ -29,19 +29,21 @@ export class ActiveOrderListComponent implements OnInit {
 
   ngOnInit(): void {
     const userId = Number(localStorage.getItem("id"));
-    this.subs = this.modalService.order$.subscribe((order) => {
-      this.orderService.cancelOrder(userId, order.id).subscribe({
-        next: () => {
-          const index = this.orders.findIndex(item => item.id === order.id);
-          this.orders.splice(index, 1);
-          this.modalService.isModalOpen = false;
-          this.orderManager.canceledOrder$.next(order);
-        },
-        error: () => {
-          console.dir("Возникла ошибка при отмене заказа!");
-        }
+    if (this.modalService) {
+      this.subs = this.modalService.order$.subscribe((order) => {
+        this.orderService.cancelOrder(userId, order.id).subscribe({
+          next: () => {
+            const index = this.orders.findIndex(item => item.id === order.id);
+            this.orders.splice(index, 1);
+            this.modalService.isModalOpen = false;
+            this.orderManager.canceledOrder$.next(order);
+          },
+          error: () => {
+            console.dir("Возникла ошибка при отмене заказа!");
+          }
+        })
       })
-    })
+    }
 
     this.subsOrderAdd = this.orderManager.order$.subscribe((order) => {
       this.orders.push(order);

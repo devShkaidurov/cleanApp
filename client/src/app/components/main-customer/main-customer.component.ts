@@ -23,9 +23,6 @@ export class MainCustomerComponent implements OnInit {
   activeOrders: Order[] | undefined;
   doneOrders: Order[] | undefined;
 
-  // isModalOpen = false;
-  // currentOrder: Order;
-
   constructor (
     private router: Router,
     private orderService: OrderService,
@@ -59,18 +56,4 @@ export class MainCustomerComponent implements OnInit {
   handleGoToUserPanel(): void {
     this.router.navigate(['customer', 'profile']);
   }
-
-  // openModal (order: Order): void {
-  //   this.currentOrder = order;
-  //   this.isModalOpen = true;
-  // }
-
-  // closeModal (): void {
-  //   this.isModalOpen = false;
-  // }
-
-  // cancelOrder (order: Order): void {
-  //   console.dir("Заказ отменен");
-  //   console.dir(order);
-  // }
 }

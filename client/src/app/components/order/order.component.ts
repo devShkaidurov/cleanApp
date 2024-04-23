@@ -23,7 +23,7 @@ export class OrderComponent implements OnInit {
   orderStatus = environment.orderStatus;
   cleanType = environment.cleanType;
   reviewValue: number = 0;
-
+  role: string;
   formReview = new FormGroup({
     
   })
@@ -39,9 +39,10 @@ export class OrderComponent implements OnInit {
   ngOnInit(): void {
       const userId = Number(localStorage.getItem("id"));
       const orderId = Number(this.route.snapshot.paramMap.get('id')); 
+      this.role = this.route.snapshot.url[0].path
       if (!orderId) {
         console.dir("Не могу найти идентификатор заказа");
-        this.router.navigate(['customer', 'main']);
+        this.router.navigate([this.role, 'main']);
         return;
       } 
       this.orderService.getOrderById(userId, orderId).subscribe({
@@ -50,7 +51,7 @@ export class OrderComponent implements OnInit {
         },
         error: () => {
           console.dir("Ошибка при получении заказа по идентификатору");
-          this.router.navigate(['customer', 'main']);
+          this.router.navigate([this.role, 'main']);
           return;
         }
       })
@@ -260,7 +261,7 @@ export class OrderComponent implements OnInit {
     }
 
     handleGoMain(): void {
-      this.router.navigate(['customer', 'main']);
+      this.router.navigate([this.role, 'main']);
     }
 
 }

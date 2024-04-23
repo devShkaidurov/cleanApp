@@ -1,0 +1,15 @@
+<div id="header">
+    <p>Панель управления для сотрудников</p>
+    <button (click)="handleGoToUserPanel()">
+        <img src="../../../assets/images/user.svg" alt="Профиль">
+    </button>
+</div>
+<div id="main-container">
+    <div id="left-side">
+        <app-active-order-list [orders]="activeOrders" [orderManager]="orderManager"></app-active-order-list>
+        <app-active-order-cleaner [order]="currentOrder" [orderManager]="orderManager"></app-active-order-cleaner>
+    </div>
+    <div id="right-side">
+        <app-history-order [orders]="doneOrders" [orderManager]="orderManager" [isCustomer]="false"></app-history-order>
+    </div>
+</div>

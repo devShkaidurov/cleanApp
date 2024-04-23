@@ -5,10 +5,10 @@
     </div>
     <hr>
     <div class="other-info">
-        <p class="order-address">Адрес: {{ order?.order_address}}</p>
-        <p class="order-type">Тип уборки: {{ getCleanType(order?.clean_type)}}</p>
-        <p class="order-type">Тип объекта: {{ getObjectType(order?.order_type)}}</p>
-        <p class="order-type">Клинер приедет {{ order.date | date: 'd MMMM, y, в H:mm'}}</p>
+        <p class="order-address">Адрес: {{ order?.orderAddress}}</p>
+        <p class="order-type">Тип уборки: {{ getCleanType(order?.cleanType)}}</p>
+        <p class="order-type">Тип объекта: {{ getObjectType(order?.orderType)}}</p>
+        <p class="order-type">Клинер приедет {{ order.orderDate | date: 'd MMMM, y, в H:mm'}}</p>
     </div>
 
     <div class="actions">

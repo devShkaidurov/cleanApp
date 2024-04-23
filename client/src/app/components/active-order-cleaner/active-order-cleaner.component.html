@@ -1,0 +1,21 @@
+<div id="header">
+    <p>Заказ #{{order.id}}</p>
+    <div id="time">
+        <p>Необходимо прибыть к {{ order.orderDate | date: 'd MMMM, в H:mm' }}</p>
+    </div>
+    <div id="address">
+        <p>Адрес: {{ order.orderAddress }}</p>
+    </div>
+    <div id="object-type">
+        <p>Тип объекта: {{ getObjectType(order.orderType) }}</p>
+    </div>
+    <div id="clean-type">
+        <p>Тип уборки: {{ getCleanType(order.cleanType) }}</p>
+    </div>
+    <div id="order-status">
+        <p>Текущий статус: {{ getStatus(order.status) }}</p>
+    </div>
+    <div id="statusChanger">
+        <button (click)="handleChangeStatus(order.status)">{{ getNextStatus(order.status) }}</button>
+    </div>
+</div>

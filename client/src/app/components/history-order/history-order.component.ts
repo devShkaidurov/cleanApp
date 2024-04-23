@@ -16,6 +16,7 @@ import { OrderManager } from 'src/app/services/OrderManager';
 export class HistoryOrderComponent implements OnInit {
   @Input() orders: Order[];
   @Input() orderManager: OrderManager;
+  @Input() isCustomer: boolean;
 
   subs: Subscription;
   orderStatus = environment.orderStatus;
@@ -35,6 +36,10 @@ export class HistoryOrderComponent implements OnInit {
   }
 
   handleGoToOrder(id: number): void {
-    this.router.navigate(['customer', 'order', id]);
+    if (this.isCustomer) {
+      this.router.navigate(['customer', 'order', id]);
+      return;
+    }
+    this.router.navigate(['cleaner', 'order', id]);
   }
 }

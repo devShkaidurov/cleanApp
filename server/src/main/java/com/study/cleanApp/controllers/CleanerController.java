@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,9 +40,15 @@ public class CleanerController {
         return new ResponseEntity<>(cleaner, cleaner == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<?> getAll () {
         List<CleanerDTO> cleaners = cleanerService.getAll();
         return new ResponseEntity<>(cleaners, cleaners == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getCleaner (@PathVariable("id") long id) {
+        CleanerDTO cleaner = cleanerService.getById(id);
+        return new ResponseEntity<>(cleaner, cleaner == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
     }
 }

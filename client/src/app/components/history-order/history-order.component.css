@@ -23,6 +23,11 @@ hr {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    overflow-y: auto;
+}
+
+#history-list::-webkit-scrollbar-button {
+
 }
 
 #history-list p {

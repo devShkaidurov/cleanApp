@@ -7,8 +7,7 @@ import com.study.cleanApp.models.Order;
 import lombok.Data;
 
 @Data
-public class OrderDTO {
-    private long id;
+public class OrderUpdateDTO {
     private Date orderDate;
     private int price;
     private int status;
@@ -18,9 +17,8 @@ public class OrderDTO {
     private String orderAddress;
     private boolean done; 
 
-    public static OrderDTO fromEntity (Order order) {
-        OrderDTO dto = new OrderDTO();
-        dto.setId(order.getId());
+    public static OrderUpdateDTO fromEntity (Order order) {
+        OrderUpdateDTO dto = new OrderUpdateDTO();
         dto.setOrderDate(order.getOrderDate());
         dto.setPrice(order.getPrice());
         dto.setStatus(order.getStatus());
@@ -32,9 +30,8 @@ public class OrderDTO {
         return dto;
     }
 
-    public static Order toEntity (OrderDTO dto) {
+    public static Order toEntity (OrderUpdateDTO dto) {
         Order order = new Order();
-        order.setId(dto.getId());
         order.setOrderDate(dto.getOrderDate());
         order.setPrice(dto.getPrice());
         order.setStatus(dto.getStatus());

@@ -10,7 +10,7 @@
         <app-make-order [customerId]="customerId" [orderManager]="orderManager"></app-make-order>
     </div>
     <div id="right-side">
-        <app-history-order [orders]="doneOrders" [orderManager]="orderManager"></app-history-order>
+        <app-history-order [orders]="doneOrders" [orderManager]="orderManager" [isCustomer]="true"></app-history-order>
     </div>
 </div>
 <app-modal *ngIf="modalService.isModalOpen" [order]="modalService.currentOrder" (cancelOrder)="modalService.cancelOrder($event)" (closeEvent)="modalService.closeModal()"></app-modal>

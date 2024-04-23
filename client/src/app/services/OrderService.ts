@@ -32,4 +32,8 @@ export class OrderService {
     getOrderById (userId: number, orderId: number): Observable<Order> {
         return this.http.get<Order>(`${environment.url}/${userId}/order/${orderId}`);
     }
+
+    updateById(userId: number, orderId: number, order: Order):Observable<Order> {
+        return this.http.put<Order>(`${environment.url}/${userId}/order/${orderId}`, order);
+    }
 }

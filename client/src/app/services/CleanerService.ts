@@ -20,6 +20,10 @@ export class CleanerService {
     }
 
     getAll (): Observable<Cleaner[]> {
-        return this.http.get<Cleaner[]>(`${environment.url}/cleaner`);
+        return this.http.get<Cleaner[]>(`${environment.url}/cleaner/all`);
+    }
+
+    getById (id: number): Observable<Cleaner> {
+        return this.http.get<Cleaner>(`${environment.url}/cleaner/${id}`);
     }
 }

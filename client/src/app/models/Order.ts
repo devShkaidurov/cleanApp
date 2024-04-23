@@ -1,12 +1,12 @@
 export interface Order {
     id: number,
-    date: Date,
+    orderDate: Date,
     square: number,
     price: number,
     status: number,
-    clean_type: number,
-    order_type: number,
-    order_address: string,
-    is_done: boolean,
+    cleanType: number,
+    orderType: number,
+    orderAddress: string,
+    done: boolean,
     cleaner: Object
 }
