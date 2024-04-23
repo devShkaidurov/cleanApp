@@ -12,6 +12,7 @@ import { UserPanelComponent } from './components/user-panel/user-panel.component
 import { OrderComponent } from './components/order/order.component';
 import { CleanerMainComponent } from './components/cleaner-main/cleaner-main.component';
 import { ActiveOrderCleanerComponent } from './components/active-order-cleaner/active-order-cleaner.component';
+import { CleanerProfileComponent } from './components/cleaner-profile/cleaner-profile.component';
 
 registerLocaleData(localeRu);
 
@@ -22,6 +23,7 @@ registerLocaleData(localeRu);
     NotFoundComponent,
     UserPanelComponent,
     OrderComponent,
+    CleanerProfileComponent,
   ],
   imports: [
     BrowserModule,

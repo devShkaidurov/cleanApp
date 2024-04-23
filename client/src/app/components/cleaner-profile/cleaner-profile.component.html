@@ -1,0 +1,29 @@
+<div id="wrapper">
+    <div id="header">
+        <button id="back_buttom">
+            <img src="../../../assets/images/back.svg" alt="Назад" (click)="handleGoBack()">
+        </button>
+        <p>Профиль</p>
+    </div>
+
+    <div id="avatar">
+        <img src="../../../assets/images/user.svg" alt="Аватар">
+        <p>{{ cleaner?.fio || "Неизвестное имя"}}</p>
+    </div>
+
+    <div id="container">
+        <div class="field">
+            <p>Имя</p>
+            <input type="text" [(ngModel)]="cleaner.fio">
+        </div>
+        <div class="field">
+            <p>Логин</p>
+            <input type="text" [(ngModel)]="cleaner.login">
+        </div>
+    </div>
+
+    <div id="footer">
+        <button (click)="handleSave()">Сохранить</button>
+        <button (click)="handleSignOff()">Выйти из аккаунта</button>
+    </div>
+</div>

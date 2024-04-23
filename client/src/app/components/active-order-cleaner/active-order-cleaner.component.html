@@ -1,6 +1,6 @@
 <div id="header">
     <div *ngIf="order" id="container">
-        <p id="numberOrder">Заказ #{{order.id}}</p>
+        <p id="numberOrder">Текущий заказ #{{order.id}}</p>
         <div id="time" class="field">
             <p>Необходимо прибыть к {{ order.orderDate | date: 'd MMMM, в H:mm' }}</p>
         </div>

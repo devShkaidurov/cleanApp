@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './components/auth/auth.component';
 import { CleanerMainComponent } from './components/cleaner-main/cleaner-main.component';
+import { CleanerProfileComponent } from './components/cleaner-profile/cleaner-profile.component';
 import { MainCustomerComponent } from './components/main-customer/main-customer.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { OrderComponent } from './components/order/order.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'customer/profile', component: UserPanelComponent},
   { path: 'customer/order/:id', component: OrderComponent},
   { path: 'cleaner/order/:id', component: OrderComponent},
+  { path: 'cleaner/profile', component: CleanerProfileComponent},
   { path: 'cleaner/main', component: CleanerMainComponent},
   { path: '**', component: NotFoundComponent}
 ];
