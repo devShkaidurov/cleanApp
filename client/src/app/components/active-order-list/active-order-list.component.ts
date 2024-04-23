@@ -17,7 +17,7 @@ import { OrderManager } from 'src/app/services/OrderManager';
 })
 export class ActiveOrderListComponent implements OnInit {
   @Input() modalService: ModalService | undefined;
-  @Input() orders: Order[] | undefined;
+  @Input() orders: Order[];
   @Input() orderManager: OrderManager;
 
   subs: Subscription;
@@ -46,6 +46,9 @@ export class ActiveOrderListComponent implements OnInit {
     }
 
     this.subsOrderAdd = this.orderManager.order$.subscribe((order) => {
+      if (!this.orders) {
+        this.orders = [];
+      }
       this.orders.push(order);
     })
   }

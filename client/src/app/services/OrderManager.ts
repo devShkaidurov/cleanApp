@@ -8,4 +8,5 @@ import { Order } from "../models/Order";
 export class OrderManager {
     public order$ = new Subject<Order>();
     public canceledOrder$ = new Subject<Order>();
+    public doneOrder$ = new Subject<Order>();
 }

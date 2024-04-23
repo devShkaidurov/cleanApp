@@ -60,6 +60,7 @@
     position: relative;
 }
 
+
 #right-side {
     height: calc(100% - 60px);
     width: 30%;
@@ -67,4 +68,17 @@
     background-color: #A8B6FA;
     margin: 30px 30px 30px 15px;
     box-shadow: 0px 0px 5px rgb(138, 138, 138);
+    position: relative;
+    overflow-y: auto;
+}
+
+#right-side::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 3px;
+    background-color: #A8B6FA;
+}
+
+#right-side::-webkit-scrollbar-thumb {
+    background-color: #5571FA;
+    border-radius: 3px;
 }

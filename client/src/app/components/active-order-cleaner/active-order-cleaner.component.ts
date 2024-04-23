@@ -1,5 +1,6 @@
-import { DatePipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Order } from '../../models/Order';
 import { OrderManager } from '../../services/OrderManager';
@@ -10,9 +11,9 @@ import { OrderService } from '../../services/OrderService';
   standalone: true,
   templateUrl: './active-order-cleaner.component.html',
   styleUrls: ['./active-order-cleaner.component.css'],
-  imports: [DatePipe]
+  imports: [DatePipe, CommonModule]
 })
-export class ActiveOrderCleanerComponent {
+export class ActiveOrderCleanerComponent implements OnInit {
   @Input() order: Order;
   @Input() orderManager: OrderManager;
   orderStatus = environment.orderStatus;
@@ -22,6 +23,9 @@ export class ActiveOrderCleanerComponent {
   constructor (
     private orderService: OrderService
   ) {}
+
+  ngOnInit(): void {
+  }
   
   getStatus(status: number): string {
     return this.orderStatus.find(item => item.key === status)?.value;
@@ -64,11 +68,7 @@ export class ActiveOrderCleanerComponent {
       next: (order) => {
         this.order = order;
         if (this.order.status == -1) {
-          // Удалить отсюда этот заказ и дать следующий из активных
-
-          // Добавить его в историю заказов 
-
-          // Из очереди удалить новый (который взяли в активный)
+          this.orderManager.doneOrder$.next(this.order);
         }
       },
       error: () => {

@@ -19,6 +19,7 @@ export class HistoryOrderComponent implements OnInit {
   @Input() isCustomer: boolean;
 
   subs: Subscription;
+  doneSubs: Subscription;
   orderStatus = environment.orderStatus;
 
   constructor (
@@ -27,6 +28,13 @@ export class HistoryOrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.subs = this.orderManager.canceledOrder$.subscribe((order) => {
+      if (!this.orders)
+        this.orders = [];
+      this.orders.push(order);
+    })
+    this.doneSubs = this.orderManager.doneOrder$.subscribe((order) => {
+      if (!this.orders)
+        this.orders = [];
       this.orders.push(order);
     })
   }

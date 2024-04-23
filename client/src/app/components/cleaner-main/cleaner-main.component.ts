@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ObservedValuesFromArray } from 'rxjs';
+import { ObservedValuesFromArray, Subscription } from 'rxjs';
 import { ActiveOrderCleanerComponent } from 'src/app/components/active-order-cleaner/active-order-cleaner.component';
 import { Cleaner } from 'src/app/models/Cleaner';
 import { Order } from 'src/app/models/Order';
@@ -21,6 +21,7 @@ export class CleanerMainComponent implements OnInit {
   doneOrders: Order[] = [];
   currentOrder: Order;
   cleaner: Cleaner
+  subsDone: Subscription;
 
   constructor (
     private router: Router,
@@ -54,6 +55,22 @@ export class CleanerMainComponent implements OnInit {
           console.dir("Ошибка получение клинера!");
           this.router.navigate(['auth']);
         }
+      })
+
+      
+      this.subsDone = this.orderManager.doneOrder$.subscribe(order => {
+        this.doneOrders.splice(this.doneOrders.indexOf(order), 1);
+        if (this.activeOrders.length == 0) {
+          this.currentOrder = undefined;
+          return
+        }
+          if (this.activeOrders.length == 1) {
+            this.currentOrder = this.activeOrders.pop();
+            return;
+          }
+
+          this.currentOrder = this.activeOrders[0];
+          this.activeOrders.splice(0, 1);
       })
     }
 
