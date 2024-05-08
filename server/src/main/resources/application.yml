@@ -1,8 +1,8 @@
 spring:
   datasource:
-      url: jdbc:postgresql://localhost:5552/cleanApp
+      url: jdbc:postgresql://localhost:5432/cleanApp
       username: postgres
-      password: Ffijvd5555
+      password: admin
   jpa:
     generate-ddl: true
     show-sql: true

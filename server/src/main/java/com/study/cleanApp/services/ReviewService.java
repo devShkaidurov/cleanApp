@@ -26,8 +26,7 @@ public class ReviewService {
     private final IPhotoRepository photoRepository;
     private final IOrderRepository orderRepository;
 
-
-    public ReviewDTO addReview (long orderId, List<MultipartFile> photos, String text, double value) {
+    public ReviewDTO addReview(long orderId, List<MultipartFile> photos, String text, double value) {
         Optional<Order> order = orderRepository.findById(orderId);
         if (order.isEmpty())
             return null;
@@ -40,8 +39,8 @@ public class ReviewService {
         for (MultipartFile photo : photos) {
             if (photo.isEmpty())
                 continue;
-            try {    
-                String uploadDir = "E:/university/cleanApp/server/photos";
+            try {
+                String uploadDir = "D:/university/cleanApp/server/photos";
                 File uploadPath = new File(uploadDir);
                 if (!uploadPath.exists()) {
                     uploadPath.mkdirs();
@@ -78,11 +77,11 @@ public class ReviewService {
         return savedReview == null ? null : ReviewDTO.fromEntity(savedReview);
     }
 
-    public ReviewDTO getReview (long orderId) { 
+    public ReviewDTO getReview(long orderId) {
         Optional<Order> order = orderRepository.findById(orderId);
         if (order.isEmpty())
             return null;
         Review review = order.get().getReview();
-        return review == null ? null : ReviewDTO.fromEntity(review);           
+        return review == null ? null : ReviewDTO.fromEntity(review);
     }
 }

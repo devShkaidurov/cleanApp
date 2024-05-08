@@ -28,6 +28,7 @@ export class HistoryOrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.subs = this.orderManager.canceledOrder$.subscribe((order) => {
+      console.dir(order);
       if (!this.orders)
         this.orders = [];
       this.orders.push(order);
