@@ -20,7 +20,4 @@ public class Review {
 
     @OneToMany(mappedBy = "review")
     private List<Photo> photos;
-
-    // @OneToOne(cascade = CascadeType.ALL) 
-    // private Order order;
 }
