@@ -10,7 +10,7 @@
 }
 
 #wrapper {
-    height: 600px;
+    height: 635px;
     width: 400px;
     background-color: #A8B6FA;
     border-radius: 5px;
@@ -38,6 +38,7 @@
     width: 40px;
     background: none;
     border: none;
+    cursor: pointer;
 }
 
 hr {
@@ -46,7 +47,7 @@ hr {
 
 .other-info {
     height: 100px;
-    padding: 0px 0px 70px 0px;
+    padding: 0px 0px 90px 0px;
 }
 
 .other-info p {

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
+import { EmployeeCardComponent } from './components/admin/employee-card/employee-card.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { CleanerMainComponent } from './components/cleaner-main/cleaner-main.component';
 import { CleanerProfileComponent } from './components/cleaner-profile/cleaner-profile.component';
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'cleaner/order/:id', component: OrderComponent},
   { path: 'cleaner/profile', component: CleanerProfileComponent},
   { path: 'cleaner/main', component: CleanerMainComponent},
+  { path: 'admin/main', component: AdminPanelComponent},
+  { path: 'admin/employees/:id', component: EmployeeCardComponent},
   { path: '**', component: NotFoundComponent}
 ];
 

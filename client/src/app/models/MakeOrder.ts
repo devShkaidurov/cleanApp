@@ -4,5 +4,6 @@ export interface MakeOrder {
     square: number,
     order_address: string,
     date: Date,
-    order_cleaner_id: number
+    order_cleaner_id: number,
+    price: number
 }

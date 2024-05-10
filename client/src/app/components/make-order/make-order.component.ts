@@ -1,6 +1,6 @@
 import { CommonModule, formatNumber } from '@angular/common';
 import { isNgTemplate } from '@angular/compiler';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { environment } from 'src/app/environments/environment';
@@ -27,8 +27,9 @@ export class MakeOrderComponent implements OnInit {
     square: new FormControl(""),
     order_address: new FormControl(""),
     date: new FormControl(""),
-    order_cleaner_id: new FormControl("")
+    order_cleaner_id: new FormControl(""),
   });
+  price: number = 0;
 
   objectType = environment.objectType;
   cleanType = environment.cleanType;
@@ -53,6 +54,16 @@ export class MakeOrderComponent implements OnInit {
     })
   }
 
+  handleInputSquare (e: Event): void {
+    const value = Number((document.getElementById("squareInput") as HTMLInputElement).value) * 100;
+    const clType = Number((document.getElementById("clean_type") as HTMLInputElement).value);
+    if (!clType) {
+      this.price = value;
+      return;
+    }
+    this.price = value * this.cleanType.find(row => row.key === clType).k;
+  }
+
   handleMakeOrder(): void {
     const order = {
       order_type: Number(this.orderForm.value.order_type),
@@ -60,7 +71,8 @@ export class MakeOrderComponent implements OnInit {
       square: Number(this.orderForm.value.square),
       order_address: this.orderForm.value.order_address,
       date: new Date(this.orderForm.value.date),
-      order_cleaner_id: Number(this.orderForm.value.order_cleaner_id)
+      order_cleaner_id: Number(this.orderForm.value.order_cleaner_id),
+      price: this.price
     } as MakeOrder;
 
     this.orderService.makeOrder(this.customerId, order).subscribe({

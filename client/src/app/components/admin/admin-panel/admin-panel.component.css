@@ -1,0 +1,74 @@
+:host {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+#header {
+    width: 100%;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 0px 10px black;
+    background-color: #5571FA;
+}
+
+#header button {
+    padding-right: 30px;
+    padding-top: 7px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 65px;
+}
+
+#header p {
+    color: #fff;
+    font-size: 16pt;
+    padding: 0px !important;
+    margin: 0px !important;
+    margin-left: 20px !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* main */
+#main-container {
+    width: 100%;
+    height: calc(100% - 65px);
+    position: relative;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+#left-side {
+    height: calc(100% - 60px);
+    width: 70%;
+    margin: 30px 30px 30px 15px;
+    position: relative;
+}
+
+#right-side {
+    height: calc(100% - 60px);
+    width: 30%;
+    border-radius: 5px;
+    background-color: #A8B6FA;
+    margin: 30px 30px 30px 15px;
+    box-shadow: 0px 0px 5px rgb(138, 138, 138);
+    position: relative;
+    overflow-y: auto;
+}
+
+#right-side::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 3px;
+    background-color: #A8B6FA;
+}
+
+#right-side::-webkit-scrollbar-thumb {
+    background-color: #5571FA;
+    border-radius: 3px;
+}

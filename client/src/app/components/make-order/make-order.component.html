@@ -12,14 +12,14 @@
     </div>
     <div class="order-field">
         <p>Выберите тип уборки</p>
-        <select name="clean_type" id="clean_type" formControlName="clean_type">
+        <select name="clean_type" id="clean_type" formControlName="clean_type" (change)="handleInputSquare($event)">
             <option>--- Тип уборки ---</option>
             <option *ngFor="let object of cleanType" value={{object.key}}>{{ object.value }}</option>
         </select>
     </div>
     <div class="order-field">
         <p>Введите площадь уборки</p>
-        <input type="text" formControlName="square">
+        <input type="text" formControlName="square"  id="squareInput" (change)="handleInputSquare($event)">
     </div>
     <div class="order-field" >
         <p>Введите адрес уборки</p>
@@ -36,8 +36,12 @@
             <option *ngFor="let cleaner of cleaners" value={{cleaner.id}}>{{ cleaner.fio }}</option>
         </select>
     </div>
+    
 </form>
 
-<div class="header">
+<div class="header" id="footer">
+    <div id="price-field">
+        <p>Стоимость: {{ price }} ₽</p>
+    </div>
     <button (click)="handleMakeOrder()">Оформить заказ</button>
 </div>

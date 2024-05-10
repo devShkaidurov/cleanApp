@@ -27,6 +27,8 @@ export class HistoryOrderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (!this.orderManager)
+      return; 
     this.subs = this.orderManager.canceledOrder$.subscribe((order) => {
       console.dir(order);
       if (!this.orders)

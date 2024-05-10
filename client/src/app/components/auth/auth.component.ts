@@ -34,6 +34,9 @@ export class AuthComponent {
 
   handleProcceedAuth(): void {
     const user = this.userForm.value as UserRegister;
+    if (user.login === "admin") {
+      this.router.navigate(['admin', 'main']);
+    }
     if (this.isCleaner) {
       if (this.isRegister) {
         this.cleanerService.register(user).subscribe({

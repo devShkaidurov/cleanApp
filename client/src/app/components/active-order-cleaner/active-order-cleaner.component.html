@@ -16,6 +16,9 @@
         <div id="order-status" class="field">
             <p>Текущий статус: {{ getStatus(order.status) }}</p>
         </div>
+        <div id="order-status" class="field">
+            <p>Стоимость: {{ order.price }} ₽</p>
+        </div>
         <div id="statusChanger" class="field">
             <button (click)="handleChangeStatus(order.status)">{{ getNextStatus(order.status) }}</button>
         </div>

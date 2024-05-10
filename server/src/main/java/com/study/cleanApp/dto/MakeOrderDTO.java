@@ -14,6 +14,7 @@ public class MakeOrderDTO {
     private String order_address;
     private Date date;
     private long order_cleaner_id;
+    private int price;
 
     public static Order toEntity (MakeOrderDTO dto) {
         Order order = new Order();
@@ -22,6 +23,7 @@ public class MakeOrderDTO {
         order.setSquare(dto.getSquare());
         order.setOrderAddress(dto.getOrder_address());
         order.setOrderDate(dto.getDate());
+        order.setPrice(dto.getPrice());
         return order;
     }
 }

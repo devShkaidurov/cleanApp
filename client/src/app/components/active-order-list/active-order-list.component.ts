@@ -45,18 +45,21 @@ export class ActiveOrderListComponent implements OnInit {
       })
     }
 
-    this.subsOrderAdd = this.orderManager.order$.subscribe((order) => {
-      if (!this.orders) {
-        this.orders = [];
-      }
-      this.orders.push(order);
-    })
+    if (this.orderManager) {
+      this.subsOrderAdd = this.orderManager.order$.subscribe((order) => {
+        if (!this.orders) {
+          this.orders = [];
+        }
+        this.orders.push(order);
+      })
+    }
   }
 
   openModal(order: Order): void {
-    this.modalService.isModalOpen = true;
-    this.modalService.currentOrder = order;
+    if (this.modalService) {
+      this.modalService.isModalOpen = true;
+      this.modalService.currentOrder = order;
+    }
   }
-  
 }
 

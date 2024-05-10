@@ -1,0 +1,20 @@
+<div id="header">
+    <p>Добро пожаловать в панель администратора</p>
+    <button title="Выйти" (click)="handleGoAuth()">
+        <img src="../../../../assets/images/leave.svg" alt="Выйти">
+    </button>
+</div>
+<div id="main-container">
+    <div id="left-side">
+        <app-active-order-list 
+            [orders]="activeOrders" 
+            [modalService]="modalService" 
+            [orderManager]="orderManager"></app-active-order-list>
+    </div>
+    <div id="right-side">
+        <app-history-order 
+            [orders]="doneOrders" 
+            [orderManager]="orderManager" 
+            [isCustomer]="true"></app-history-order>
+    </div>
+</div>
