@@ -37,6 +37,9 @@ public class CleanerAdminDTO {
         dto.setSalary(rs.getLong("salary"));
         dto.setAvgReview(rs.getDouble("avgReview"));
         dto.setId(rs.getLong("id"));
+        dto.setAvgReview(dto.getAvgReview());
+        String atr = "sdasdsa";
+        atr.
         return dto;
     };
 

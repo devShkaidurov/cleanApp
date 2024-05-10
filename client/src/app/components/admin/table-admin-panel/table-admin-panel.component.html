@@ -1,1 +1,49 @@
-<p>table-admin-panel works!</p>
+<div id="header">
+    <button (click)="handleCreateCleaner()">
+        <img src="../../../../assets/images/create.svg" alt="Создание работника">Добавить клинера
+    </button>
+</div>
+
+
+<table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+       class="mat-elevation-z8">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Отсортировать по номеру">
+      Номер
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="fio">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Отсортировать по ФИО">
+      ФИО
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.fio}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="avgReview">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Отсортировать по рейтингу">
+      Средний рейтинг
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.avgReview}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="countOrders">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Отсортировать по количеству выполненных заказов">
+      Количество выполненных заказов
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.countOrders}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="salary">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Отсортировать по выручке">
+      Выручка
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.salary}} </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="cols"></tr>
+  <tr mat-row *matRowDef="let row; columns: cols;" (click)="handleChooseCleaner($event)"></tr>
+</table>
