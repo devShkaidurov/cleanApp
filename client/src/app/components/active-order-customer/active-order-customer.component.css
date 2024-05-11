@@ -61,4 +61,6 @@
 
 hr {
     width: 90%;
+    left: 5%;
+    position: relative;
 }

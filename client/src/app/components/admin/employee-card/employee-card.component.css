@@ -101,7 +101,8 @@ a img {
 
 ul {
     overflow-y: overlay;
-    height: 250px;
+    max-height: 250px;
+    min-height: 50px;
 }
 
 
