@@ -5,6 +5,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AdminService } from 'src/app/services/AdminService';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-table-admin-panel',
@@ -19,7 +20,8 @@ export class TableAdminPanelComponent implements AfterViewInit {
 
   constructor(
     private _liveAnnouncer: LiveAnnouncer,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private router: Router
   ) {}
 
   @ViewChild(MatSort) sort: MatSort;
@@ -37,7 +39,6 @@ export class TableAdminPanelComponent implements AfterViewInit {
   }
 
   announceSortChange(sortState: Sort) {
-    console.dir(sortState);
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
@@ -45,11 +46,12 @@ export class TableAdminPanelComponent implements AfterViewInit {
     }
   }
 
-  handleChooseCleaner(e: Event): void {
-    console.dir(e)
+  handleChooseCleaner(cl: CleanerAdminDTO): void {
+    this.router.navigate(['admin', 'employee', cl.id]);
   }
 
   handleCreateCleaner(): void {
+    this.router.navigate(['admin', 'employee', 'new']);
     
   }
 }

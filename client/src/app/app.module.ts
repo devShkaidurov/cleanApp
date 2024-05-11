@@ -10,10 +10,9 @@ import { AuthComponent } from './components/auth/auth.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { UserPanelComponent } from './components/user-panel/user-panel.component';
 import { OrderComponent } from './components/order/order.component';
-import { CleanerMainComponent } from './components/cleaner-main/cleaner-main.component';
-import { ActiveOrderCleanerComponent } from './components/active-order-cleaner/active-order-cleaner.component';
 import { CleanerProfileComponent } from './components/cleaner-profile/cleaner-profile.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EmployeeCardComponent } from './components/admin/employee-card/employee-card.component';
 registerLocaleData(localeRu);
 
 @NgModule({
@@ -24,6 +23,7 @@ registerLocaleData(localeRu);
     UserPanelComponent,
     OrderComponent,
     CleanerProfileComponent,
+    EmployeeCardComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +33,8 @@ registerLocaleData(localeRu);
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    DatePipe
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'ru' },

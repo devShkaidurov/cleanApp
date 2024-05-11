@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'cleaner/profile', component: CleanerProfileComponent},
   { path: 'cleaner/main', component: CleanerMainComponent},
   { path: 'admin/main', component: AdminPanelComponent},
-  { path: 'admin/employees/:id', component: EmployeeCardComponent},
+  { path: 'admin/employee/:id', component: EmployeeCardComponent},
   { path: '**', component: NotFoundComponent}
 ];
 

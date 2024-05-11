@@ -35,12 +35,14 @@ public class CleanerAdminDTO {
         dto.setFio(rs.getString("fio"));
         dto.setCountOrders(rs.getLong("countOrders"));
         dto.setSalary(rs.getLong("salary"));
-        dto.setAvgReview(rs.getDouble("avgReview"));
+        dto.setAvgReview(roundTo(rs.getDouble("avgReview")));
         dto.setId(rs.getLong("id"));
-        dto.setAvgReview(dto.getAvgReview());
-        String atr = "sdasdsa";
-        atr.
         return dto;
     };
+
+    private static double roundTo(double value) {
+        double scale = Math.pow(10, 2);
+        return Math.ceil(value * scale) / scale;
+    }
 
 }

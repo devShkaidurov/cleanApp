@@ -1,1 +1,60 @@
-<p>employee-card works!</p>
+<div class="father" *ngIf="isNew">
+    <div class="header">Создание сотрудника</div>
+    <div class="main-body">
+        <div class="field">
+            <p>Введите ФИО:</p>
+            <input type="text" name="name" id="" [(ngModel)]="cleaner.fio">
+        </div>
+
+        <div class="field">
+            <p>Введите логин</p>
+            <input type="text" name="login" id="" [(ngModel)]="cleaner.login">
+        </div>
+
+        <div class="field">
+            <p>Введите пароль</p>
+            <input type="text" name="pass" id="" [(ngModel)]="cleaner.password">
+        </div>
+
+        <div class="field">
+            <p>Введите дату рождения</p>
+            <input type="date" name="bday" id=""  [(ngModel)]="cleaner.birthday">
+        </div>
+    </div>
+
+    <div class="footer">
+        <button (click)="handleAddEmployee()">Добавить</button>
+        <button (click)="handleGoBack()">Назад</button>
+    </div>
+</div>
+
+
+<div class="father" *ngIf="!isNew">
+    <div class="header">Просмотр сотрудника</div>
+    <div class="main-body">
+        <div class="field">
+            <p>ФИО: {{ cleaner?.fio }}</p>
+        </div>
+
+        <div class="field">
+            <p>Логин {{ cleaner?.login }}</p>
+        </div>
+
+        <div class="field">
+            <p>Дата рождения {{ cleaner?.birthday | date: 'dd/MM/yyyy' }}</p>
+        </div>
+
+        <div class="field">
+            <p>Активные заказы</p>
+        </div>
+
+        <div class="field">
+            <p>Выполненные заказы</p>
+        </div>
+    </div>
+
+    
+    <div class="footer">
+        <button (click)="handleGoBack()">Назад</button>
+    </div>
+</div>

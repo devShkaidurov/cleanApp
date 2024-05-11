@@ -45,5 +45,5 @@
 
 
   <tr mat-header-row *matHeaderRowDef="cols"></tr>
-  <tr mat-row *matRowDef="let row; columns: cols;" (click)="handleChooseCleaner($event)"></tr>
+  <tr mat-row *matRowDef="let row; columns: cols;" (click)="handleChooseCleaner(row)"></tr>
 </table>
