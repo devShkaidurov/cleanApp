@@ -1,3 +1,12 @@
 p {
     margin: 0px !important;
 }
+
+* {
+    box-sizing: revert !important;
+}
+
+body {
+    line-height: normal !important;
+    font-family: none !important;
+}

@@ -16,10 +16,12 @@ const routes: Routes = [
   { path: 'customer/profile', component: UserPanelComponent},
   { path: 'customer/order/:id', component: OrderComponent},
   { path: 'cleaner/order/:id', component: OrderComponent},
+  { path: 'admin/order/:id', component: OrderComponent},
   { path: 'cleaner/profile', component: CleanerProfileComponent},
   { path: 'cleaner/main', component: CleanerMainComponent},
   { path: 'admin/main', component: AdminPanelComponent},
   { path: 'admin/employee/:id', component: EmployeeCardComponent},
+  { path: 'admin/employee/:userId/order/:id', component: OrderComponent},
   { path: '**', component: NotFoundComponent}
 ];
 

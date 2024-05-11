@@ -10,6 +10,6 @@
         <app-active-order-cleaner [order]="currentOrder" [orderManager]="orderManager"></app-active-order-cleaner>
     </div>
     <div id="right-side">
-        <app-history-order [orders]="doneOrders" [orderManager]="orderManager" [isCustomer]="false"></app-history-order>
+        <app-history-order [orders]="doneOrders" [orderManager]="orderManager" [role]="'cleaner'"></app-history-order>
     </div>
 </div>

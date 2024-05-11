@@ -1,3 +1,5 @@
+import { Review } from "./Review";
+
 export interface Order {
     id: number,
     orderDate: Date,
@@ -8,5 +10,6 @@ export interface Order {
     orderType: number,
     orderAddress: string,
     done: boolean,
-    cleaner: Object
+    cleaner: Object,
+    review: Review
 }

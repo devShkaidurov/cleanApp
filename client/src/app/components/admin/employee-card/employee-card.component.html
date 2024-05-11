@@ -37,20 +37,34 @@
         </div>
 
         <div class="field">
-            <p>Логин {{ cleaner?.login }}</p>
+            <p>Логин: {{ cleaner?.login }}</p>
         </div>
 
         <div class="field">
-            <p>Дата рождения {{ cleaner?.birthday | date: 'dd/MM/yyyy' }}</p>
+            <p>Дата рождения: {{ cleaner?.birthday | date: 'dd.MM.yyyy' }}</p>
         </div>
 
-        <div class="field">
-            <p>Активные заказы</p>
-        </div>
+        <div class="dropdown-center field">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+              Активные заказы сотрудника
+            </a>
+            <ul class="dropdown-menu">
+                <li *ngFor="let order of getActiveOrder()">
+                    <a class="dropdown-item add-a" href="admin/employee/2/order/{{order.id}}">#{{ order.id }} <div>{{ order?.review?.value || 0 }} <img src="../../../../assets/images/star.svg" alt=""></div></a>
+                </li>
+            </ul>
+          </div>
 
-        <div class="field">
-            <p>Выполненные заказы</p>
-        </div>
+          <div class="dropdown-center field">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+              Выполненные заказы сотрудника
+            </a>
+            <ul class="dropdown-menu">
+                <li *ngFor="let order of getDoneOrder()">
+                    <a class="dropdown-item add-a" href="admin/employee/2/order/{{order.id}}">#{{ order.id }} <div>{{ order?.review?.value || 0 }} <img src="../../../../assets/images/star.svg" alt=""></div></a>
+                </li>
+            </ul>
+          </div>
     </div>
 
     

@@ -39,7 +39,8 @@ export class OrderComponent implements OnInit {
   ngOnInit(): void {
       const userId = Number(localStorage.getItem("id"));
       const orderId = Number(this.route.snapshot.paramMap.get('id')); 
-      this.role = this.route.snapshot.url[0].path
+      this.role = this.route.snapshot.url[0].path;
+      console.dir("ROLE: " + this.role);
       if (!orderId) {
         console.dir("Не могу найти идентификатор заказа");
         this.router.navigate([this.role, 'main']);
@@ -261,6 +262,14 @@ export class OrderComponent implements OnInit {
     }
 
     handleGoMain(): void {
+      if (this.role === "admin") {
+        const isEmployee = this.route.snapshot.url[1].path;
+        if (isEmployee === "employee") {
+          const emplNumber = this.route.snapshot.url[2].path;
+          this.router.navigate([this.role, 'employee', emplNumber]);
+          return;
+        }
+      }
       this.router.navigate([this.role, 'main']);
     }
 

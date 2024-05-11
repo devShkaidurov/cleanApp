@@ -5,6 +5,7 @@ import { DateAdapter } from '@angular/material/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Cleaner } from 'src/app/models/Cleaner';
+import { Order } from 'src/app/models/Order';
 import { AdminService } from 'src/app/services/AdminService';
 
 @Component({
@@ -19,7 +20,6 @@ export class EmployeeCardComponent implements OnInit {
   constructor (
     private route: ActivatedRoute,
     private adminService: AdminService,
-    private datePipe: DatePipe,
     private router: Router
   ) {}
 
@@ -63,6 +63,18 @@ export class EmployeeCardComponent implements OnInit {
 
   handleGoBack(): void {
     this.router.navigate(['admin', 'main']);
+  }
+
+  getActiveOrder(): Order[] {
+    if (!this.cleaner?.orders)
+      return null;
+    return this.cleaner.orders.filter(order => order.status != -1 && order.status != -2)
+  }
+
+  getDoneOrder(): Order[] {
+    if (!this.cleaner?.orders)
+      return null;
+    return this.cleaner.orders.filter(order => order.status == -1 || order.status == -2)
   }
 
 }
